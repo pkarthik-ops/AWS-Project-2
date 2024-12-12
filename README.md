@@ -4,51 +4,64 @@
 # Project Description: Data Protection, Governance, and Monitoring
 * This project involves setting up a comprehensive data analytics platform using AWS services to manage the City of Vancouver’s animal control data. 
 ## Project Title: AWS Data Analytic Platform for the City of Vancouver - Part 2
-* This project aims to design and implement a Data Analytics Platform (DAP) using Amazon Web Services (AWS) to Data Protection, Governance, and Monitoring
+* This project involves setting up a comprehensive data analytics platform using AWS services to manage  to give a better protection on data monitoring and enriching the City of Vancouver’s animal control data. 
 ## Project Objective:
-* Designing & Implementing DAP.
+* This project aims to design and implement a Data Analytics Platform (DAP) using Amazon Web Services (AWS) to Data Enriching, Data Protection, Governance, and Monitoring
 ## Methodology:
-* The process of providing Data Protection, Governance, and Monitoring for DAP designed as follows.
-### 1. Data Protection
-- To secure the data, multiple AWS services were used:
-  - **S3 Bucket Policies**: Restricted access to the data to authorized users only.
-  - **AWS KMS (Key Management Service)**: Enabled encryption using a symmetric key created through AWS KMS, ensuring all data stored in S3 buckets was encrypted.
-  - **Data Replication**: Established backup procedures to replicate data across AWS regions, preventing data loss and ensuring disaster recovery
-![Keys](https://github.com/user-attachments/assets/8df67627-e1bf-4e58-b5cf-a7520dac7910)
-![replication rule](https://github.com/user-attachments/assets/277268ff-e59b-4634-8ff0-ce0dd9261463)
-![S3 bucket](https://github.com/user-attachments/assets/d3ef2738-d090-494e-9ce8-eaddfe6e4028)
+* The process of providing Data Enriching, Data Protection, Governance, and Monitoring for DAP designed as follows.
+### 1. Data Enriching
+- Data Enriching is the process of making raw data more valuable, effective or better which can be done by incorporating attributes from internal as well as external sources. Data mining is especially important in business as it is helpful for data analysis in the different sectors including marketing and business intelligence.
+
+![image](https://github.com/user-attachments/assets/21f7ba35-d261-49e6-b0f6-8abb65274a0b)
+
+![image](https://github.com/user-attachments/assets/32d6748f-2483-47e9-8501-7252e208efa6)
+
+![image](https://github.com/user-attachments/assets/17e821fa-3279-4272-b75e-8033caa3452b)
 
 
-### 2. Data Governance
-- To enhance data governance and secure data access, I set up a data pipeline using AWS Glue and S3. The pipeline begins with storing data in an S3 bucket and includes steps to detect sensitive information, such as personal data. It then evaluates the data quality to ensure integrity. A row-level transformation is applied to modify the data, followed by a conditional router that filters the data based on defined criteria. Unnecessary columns are removed by changing the schema, ensuring that only essential information is retained. 
-![Dataprotection ETL 2023](https://github.com/user-attachments/assets/a8336c80-f224-4314-b3fd-618923a69f2e)
-![Dataprotection ETL 2024](https://github.com/user-attachments/assets/705ac2d6-508e-4556-9f8d-50ac77dd5fc5)
-![Screenshot 2024-09-14 153814](https://github.com/user-attachments/assets/429dd708-0b51-475c-80a6-40738c3c570c)
-![Screenshot 2024-09-14 153832](https://github.com/user-attachments/assets/80f1ddda-2f75-4b22-a98d-418c06852b48)
+### 2. Data Protection
+- The main purpose of this phase was to maintain data security within the AWS S3 client environment. The following screenshots describe main security settings like Bucket Policies and Encryption, Replication that enhances the secure data management on the platform.
+
+![image](https://github.com/user-attachments/assets/6ef8e460-0973-44c6-a217-e031df519fc3)
+
+1. 	In this setup, a new key was created to create extra security measure using AWS Key Management Service (KMS). The NAME of the key created on AWS is “grp6-prt2-anmlcnvin-lstfnd-kms-karthik it is a SYMMETRIC type and is designed to perform the ENCRYPTION and DECRYPTION within the confines of the AWS. This key will serve a lot of importance in keeping secured the data placed in AWS S3.
+The following screenshots show basic steps in setting up protection of an S3 bucket on AWS using encryption and replication capabilities.
+2. Encryption: 
+ 	By default, the S3 bucket has server-side enforcement of encryption of data at rest with AWS Key Management Service (KMS). Data protection at rest is achieved with the help of an encryption key that KMS uses in order to encrypt data. The last figure in the right corner of the heading Illustrates that a KMS key (ARN) belongs to the bucket and show that the bucket key is enabled to minimize costs through minimizing Encryption requests to AWS KMS. It ensures protection of sensitive data, and addresses compliance standards.
+![image](https://github.com/user-attachments/assets/296718e0-3e73-46c4-991f-4d49c47c0c28)
+3.	Replication: 
+ 	They have set up a replication rule that would create an asynchronous copy of the objects from a source bucket to another different destination bucket within the same region of US East. Replication helps to make data copies, which leads to a feature known as high availability, and the overlapping also makes copies, and is termed as redundancy. It applies to the whole bucket, and replicating objects encrypted using SSE-KMS uses the same KMS key. Another advantage of replication is to produce a second copy of the data simply to use in case of disaster.
+![image](https://github.com/user-attachments/assets/7655a627-f5ee-424d-aacd-f1292289dd22)
+4.	Versioning:
+When enabled, S3 versioning enables the creation of many versions of an object within a single bucket in order to retain, recall, and restore each version of an object that replaced by or eliminated by other versions. When versioning is on, one can always get a previous version of the object despite the fact that it has been deleted or perhaps altered, which of course offers another extra layer of security to accidental data deletion or modification. This is especially true when several files must be edited now and then.
+SSE-KMS besides replication and versioning increases the durability of data. When used together with replication, it makes not only the current versions of the objects stored in the bucket replicated to the destination bucket but also the previous versions of an object.
+![image](https://github.com/user-attachments/assets/22053c9c-5d4c-450c-a862-4499550de003)
 
 
-### 3. Data Monitoring
-- Monitoring data effectively is crucial for ensuring system health and keeping track of usage metrics. The screenshots show the use of Amazon CloudWatch to create custom dashboards, which aid in tracking and managing system performance.
- ![Alam](https://github.com/user-attachments/assets/da99a858-5709-443e-a284-5b23912e7c06)
+### 3. Data Governance
+- To achieve better data management and data availability I created a data pipeline with AWS Glue and S3. The pipeline starts with data accumulation in an S3 bucket and contains stages for the identification of, for instance, personal information. It then assesses the quality of the data thus improving on the quality of the data gathered for integrity. A row-level transformation is turned on to change the data then a conditional router filters the data according to set conditions. Specific columns not relevant for judgments are deleted by altering the scheme so that only relevant data is stored.
+![image](https://github.com/user-attachments/assets/0e8b394c-bddd-45ce-8fc1-687bceb6a09c)
+
+Then, the processed data is transferred and stored in the Trusted folder in S3 for further use.
+![image](https://github.com/user-attachments/assets/53d64672-955a-49b6-86e2-81104d716c63)
+
+### 4. Data Monitoring
+
+- In general, the ability to monitor data adequately is important to determine system status and utilization rates. The examples of the screenshots imply use of Amazon CloudWatch to customize dashboard which in turn help in monitoring and controlling the performance of systems.
+
+![image](https://github.com/user-attachments/assets/35188812-e507-4f07-843b-1aa3eced6dec)
+
+-The CloudWatch dashboard, named " grp6-prt2-anmlcnvn-lstfnd-DAP_DASH-karthik" includes:
+ •	Estimated Charges: Features a meter which shows the current estimates of costs.
+ •	Number of Objects: Mostly contains a graph to describe the count of objects over time.
+ •	Bucket Size in Bytes: It clears an understanding to depict the size of the bucket in byte so that it will be convenient to mention about the storage usage.
+ •	Alam: An alarm named “grp6-prt2-anmlcnvn-lstfnd-alarm-karthik” is raised for certain limit like number of objects or even estimated charges. This means that beyond the limits, the system has a capacity to send an email alert to encourage active monitoring.
+
+ ![image](https://github.com/user-attachments/assets/5a6dfa3b-119b-4db7-9b2c-dbb770ce861c)
 
 
-- The CloudWatch dashboard, named "part2-parksrecreandpets-animalconinv-kalyan," includes:
-* Estimated Charges: Displays a gauge indicating the current estimated costs.
-* Number of Objects: Shows a graph tracking the count of objects over time.
-* Bucket Size in Bytes: Illustrates the size of the bucket in bytes, providing insights into storage usage.
-* Alam: An alarm named "animalcoinv-Alam-kalyan" is configured to monitor specific thresholds, such as the number of objects or estimated charges. When these thresholds are exceeded, an email alert is triggered, ensuring proactive monitoring.
-
-![ETL Monitoring](https://github.com/user-attachments/assets/63f30d20-2d85-4cfd-868c-cfe06fededa9)
-
-
-- AWS Glue job monitoring is depicted, summarizing job runs with details such as:
-* Total Runs: Three jobs executed, with two successful and one failed.
-* Run Success Rate: 67% success rate.
-* Resource Usage: Visual representation of resource utilization over time.
-- Lastly, the CloudTrail screenshot shows a trail named "part2-animalconinv-trail-kalyan" configured in the US East (N. Virginia) region, with logging enabled to track user activity and API usage.
-![Screenshot 2024-09-14 154930](https://github.com/user-attachments/assets/8e466dd3-ebeb-40c3-a30b-9783402bface)
-
-## AWS CloudTrail
-The CloudTrail configuration includes a trail named "part2-animalconinv-trail-kalyan" in the US East (N. Virginia) region. Logging is enabled, capturing user activity and API usage for enhanced security and compliance.
-
+- Additionally, AWS Glue job monitoring is depicted, summarizing job runs with details such as:
+•	Total Runs: One job executed, with One successful run.
+•	Run Success Rate: 100% success rate.
+•	Resource Usage: The graphical display of resource use over time for the purpose of identification and analysis.
 
